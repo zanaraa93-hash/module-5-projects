@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ВетДок — Калькулятор услуг | Алматы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="brand">ВетДок</p>
+      <h1>Калькулятор услуг для вашего питомца</h1>
+      <p class="subtitle">Алматы · цены сразу в тенге · смета за 3 шага</p>
+    </header>
+
+    <main class="calculator" aria-label="Квиз-калькулятор ВетДок">
+      <div class="progress" aria-live="polite">
+        <div class="progress-top">
+          <span id="progressLabel">Шаг 1 из 3</span>
+          <span id="progressPercent">33%</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="steps" id="steps">
+        <section class="step is-active" data-step="1" id="step1" aria-labelledby="step1Title">
+          <h2 id="step1Title">Выберите услуги</h2>
+          <div class="options" id="services" role="group" aria-label="Услуги">
+            <button type="button" class="option" data-service="8000" data-name="Консультация" aria-pressed="false">
+              <span class="option-name">Консультация</span>
+              <span class="option-price">8 000 ₸</span>
+            </button>
+            <button type="button" class="option" data-service="12000" data-name="Вакцинация" aria-pressed="false">
+              <span class="option-name">Вакцинация</span>
+              <span class="option-price">12 000 ₸</span>
+            </button>
+            <button type="button" class="option" data-service="15000" data-name="Чипирование" aria-pressed="false">
+              <span class="option-name">Чипирование</span>
+              <span class="option-price">15 000 ₸</span>
+            </button>
+            <button type="button" class="option" data-service="35000" data-name="Стерилизация кошки" aria-pressed="false">
+              <span class="option-name">Стерилизация кошки</span>
+              <span class="option-price">35 000 ₸</span>
+            </button>
+            <button type="button" class="option" data-service="45000" data-name="Стерилизация собаки" aria-pressed="false">
+              <span class="option-name">Стерилизация собаки</span>
+              <span class="option-price">45 000 ₸</span>
+            </button>
+          </div>
+          <p class="selected-list" id="selectedList" aria-live="polite">Выбрано: ничего</p>
+          <p class="step-hint" id="step1Hint">Выберите услугу</p>
+          <div class="nav-row">
+            <button type="button" class="nav-btn primary" id="next1" disabled aria-disabled="true">Далее</button>
+          </div>
+        </section>
+
+        <section class="step" data-step="2" id="step2" aria-labelledby="step2Title" aria-hidden="true">
+          <h2 id="step2Title">Вес животного</h2>
+          <div class="options weight" id="weights" role="radiogroup" aria-label="Вес">
+            <button type="button" class="option selected" data-markup="0" data-weight-label="до 5 кг" aria-pressed="true">
+              <span class="option-name">До 5 кг</span>
+              <span class="option-price">без наценки</span>
+            </button>
+            <button type="button" class="option" data-markup="20" data-weight-label="5–15 кг" aria-pressed="false">
+              <span class="option-name">5–15 кг</span>
+              <span class="option-price">+20%</span>
+            </button>
+            <button type="button" class="option" data-markup="40" data-weight-label="больше 15 кг" aria-pressed="false">
+              <span class="option-name">Больше 15 кг</span>
+              <span class="option-price">+40%</span>
+            </button>
+          </div>
+          <div class="nav-row dual">
+            <button type="button" class="nav-btn secondary" id="back2">Назад</button>
+            <button type="button" class="nav-btn primary" id="next2">Далее</button>
+          </div>
+        </section>
+
+        <section class="step" data-step="3" id="step3" aria-labelledby="step3Title" aria-hidden="true">
+          <h2 id="step3Title">Смета и запись</h2>
+
+          <label class="visit-check">
+            <input type="checkbox" id="homeVisit">
+            <span class="check-box" aria-hidden="true"></span>
+            <span class="visit-text">
+              <strong>Нужен выезд на дом</strong>
+              <span>+10 000 ₸</span>
+            </span>
+          </label>
+
+          <section class="total-block" aria-live="polite">
+            <p class="total-label">Итоговая цена</p>
+            <p class="total-price"><span id="totalPrice">0</span> ₸</p>
+            <p class="formula" id="formulaText"></p>
+          </section>
+
+          <form class="lead-form" id="leadForm" novalidate>
+            <label class="field">
+              <span>Имя</span>
+              <input type="text" id="clientName" name="name" autocomplete="name" placeholder="Как к вам обращаться" required>
+            </label>
+            <label class="field">
+              <span>Телефон</span>
+              <input type="tel" id="clientPhone" name="phone" autocomplete="tel" placeholder="+7 700 000 00 00" required>
+            </label>
+            <button type="submit" class="nav-btn primary submit-btn" id="whatsappBtn">Получить смету в WhatsApp</button>
+          </form>
+
+          <p class="success hidden" id="successMsg" role="status">Спасибо! Смета отправлена в WhatsApp!</p>
+
+          <div class="nav-row">
+            <button type="button" class="nav-btn secondary" id="back3">Назад</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>ВетДок · ветклиника в Алматы · забота о ваших питомцах</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
