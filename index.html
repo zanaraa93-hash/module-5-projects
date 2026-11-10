@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Свадьба за 1 вечер | Алматы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="mobile-card" id="app">
+      <header class="top-bar">
+        <button
+          type="button"
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Переключить тему"
+          title="Светлая / тёмная тема"
+        >
+          <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀️</span>
+          <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">🌙</span>
+        </button>
+      </header>
+
+      <section class="profile" aria-label="Профиль">
+        <div class="profile__avatar" aria-hidden="true">💍</div>
+        <h1 class="profile__name">Свадьба за 1 вечер | Алматы</h1>
+        <p class="profile__status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Онлайн • Отвечаем за 5 мин
+        </p>
+        <p class="profile__bio">
+          Посчитаем точную смету твоей свадьбы в тенге за 1 вечер.
+          Без скрытых цен. Гостей, бюджет, подрядчики — всё в одном месте.
+        </p>
+      </section>
+
+      <section class="socials" aria-label="Связаться">
+        <a
+          class="social-btn social-btn--whatsapp"
+          href="https://wa.me/77001234567"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="social-btn__icon" aria-hidden="true">💬</span>
+          WhatsApp
+        </a>
+        <a
+          class="social-btn social-btn--telegram"
+          href="https://t.me/svadba_almaty"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="social-btn__icon" aria-hidden="true">✈️</span>
+          Telegram
+        </a>
+        <a
+          class="social-btn social-btn--instagram"
+          href="https://instagram.com/svadba_almaty"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="social-btn__icon" aria-hidden="true">📷</span>
+          Instagram
+        </a>
+      </section>
+
+      <section class="cta-block">
+        <button type="button" class="btn btn--primary" id="openCalculator">
+          Посчитать смету
+        </button>
+      </section>
+
+      <section class="calculator" id="calculator" hidden>
+        <div class="section-head">
+          <h2>Калькулятор сметы</h2>
+          <p>Укажи гостей и бюджет — покажем ориентир в тенге</p>
+        </div>
+
+        <div class="field">
+          <label for="guests">Количество гостей</label>
+          <input
+            type="number"
+            id="guests"
+            name="guests"
+            min="10"
+            max="500"
+            step="1"
+            value="50"
+            inputmode="numeric"
+          />
+          <input
+            type="range"
+            id="guestsRange"
+            min="10"
+            max="300"
+            step="5"
+            value="50"
+            aria-label="Гости ползунком"
+          />
+        </div>
+
+        <div class="field">
+          <label for="budget">Бюджет (тенге)</label>
+          <input
+            type="number"
+            id="budget"
+            name="budget"
+            min="500000"
+            max="50000000"
+            step="50000"
+            value="3000000"
+            inputmode="numeric"
+          />
+          <div class="budget-chips" role="group" aria-label="Быстрый выбор бюджета">
+            <button type="button" class="chip" data-budget="1500000">1,5 млн</button>
+            <button type="button" class="chip is-active" data-budget="3000000">3 млн</button>
+            <button type="button" class="chip" data-budget="5000000">5 млн</button>
+            <button type="button" class="chip" data-budget="10000000">10 млн</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn--secondary" id="calcEstimate">
+          Рассчитать
+        </button>
+
+        <div class="estimate" id="estimate" hidden>
+          <h3>Ориентировочная смета</h3>
+          <p class="estimate__total" id="estimateTotal"></p>
+          <ul class="estimate__list" id="estimateList"></ul>
+          <p class="estimate__note">
+            Это черновик. Точную смету под твою дату пришлём после заявки.
+          </p>
+        </div>
+      </section>
+
+      <section class="lead-form-section" aria-label="Заявка">
+        <div class="section-head">
+          <h2>Оставить заявку / Получить консультацию</h2>
+          <p>Напишем в WhatsApp и разберём смету вместе</p>
+        </div>
+
+        <form class="lead-form" id="leadForm" novalidate>
+          <div class="field">
+            <label for="name">Имя</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Айгерим"
+              autocomplete="name"
+              required
+            />
+            <span class="field-error" id="nameError" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+7 700 123 45 67"
+              autocomplete="tel"
+              inputmode="tel"
+              required
+            />
+            <span class="field-error" id="phoneError" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="weddingDate">Дата свадьбы</label>
+            <input type="date" id="weddingDate" name="weddingDate" required />
+            <span class="field-error" id="dateError" hidden></span>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Отправить заявку</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <p>Алматы • Смета за 1 вечер</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <div class="toast__card">
+      <span class="toast__icon" aria-hidden="true">✨</span>
+      <p class="toast__title">Заявка отправлена!</p>
+      <p class="toast__text">Мы напишем в WhatsApp в течение 5 минут</p>
+      <button type="button" class="btn btn--ghost" id="toastClose">Отлично</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
